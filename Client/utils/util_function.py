@@ -5,7 +5,7 @@ from torch.utils.data import TensorDataset, DataLoader
 import torchvision.transforms as transforms
 from torchvision.datasets import CIFAR10, MNIST
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 def poison_CIFAR10_dataset(dataset, poison_rate):
