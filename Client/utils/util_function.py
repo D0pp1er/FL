@@ -30,11 +30,6 @@ def poison_CIFAR10_dataset(dataset, poison_rate):
         images.append(torch.unsqueeze(image, dim=0))
         labels.append(label)
 
-        # Print the poisoned image
-        poisoned_image = images[-1].squeeze().numpy()
-        plt.imshow(poisoned_image)
-        plt.show()
-        print(images[-1])
     return TensorDataset(torch.cat(images, dim=0), torch.LongTensor(labels))
 
 def poison_MNIST_dataset(dataset, poison_rate):
