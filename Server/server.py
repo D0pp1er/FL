@@ -1,7 +1,8 @@
 import sys
 import os
 from typing import List, Tuple
-
+import time
+start_time = time.time()
 
 # Get the parent directory
 parent_dir = os.path.dirname(os.path.realpath(__file__))
@@ -39,3 +40,6 @@ fl.server.start_server(
     config=fl.server.ServerConfig(num_rounds=args.number_of_round),
     strategy=strategy,
 )
+
+end_time = time.time()
+print(f"Time taken: {end_time - start_time} seconds")
