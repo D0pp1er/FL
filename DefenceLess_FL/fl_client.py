@@ -157,8 +157,15 @@ class FlowerClient(fl.client.NumPyClient):
         self.set_parameters(parameters)
         train(net, trainloader, epochs=1)
         return self.get_parameters(config={}), len(trainloader.dataset), {}
+    
+    def perturb_parameters(self, parameters, perturb_rate):
+        # Implement parameter perturbation logic here
+        perturbed_parameters = [param + np.random.normal(scale=perturb_rate, size=param.shape) for param in parameters]
+        return perturbed_parameters
 
     def evaluate(self, parameters, config):
+        if self.perturb_rate > 0:
+            parameters = self.perturb_parameters(parameters, perturb_rate=self.perturb_rate)
         self.set_parameters(parameters)
         loss, accuracy = test(net, testloader)
         return loss, len(testloader.dataset), {"accuracy": accuracy}
