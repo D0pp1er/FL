@@ -449,21 +449,11 @@ class FlowerClient(fl.client.NumPyClient):
         loss, accuracy = test(net, testloader)
         validity =  1
         try:
-            if config["mode"] == 'validate':
-                print("checking Validation")
-                if self.previous_loss is not None and self.previous_accuracy is not None and args.poison_rate == 0:
-                    if loss > self.previous_loss + self.threshold_loss or accuracy < self.previous_accuracy - self.threshold_accuracy:
-                        validity = 0
-                
-                print("validity"+str(validity))
-                return loss, len(testloader.dataset), {"validity": validity}
-
-            else:
-                print('checking evaluation')    
-                self.previous_loss = loss
-                self.previous_accuracy = accuracy
-                print("loss: "+ str(loss) + " accuracy: "+ str(accuracy)) 
-                return loss, len(testloader.dataset), {"accuracy": accuracy}
+            print('checking evaluation')    
+            self.previous_loss = loss
+            self.previous_accuracy = accuracy
+            print("loss: "+ str(loss) + " accuracy: "+ str(accuracy)) 
+            return loss, len(testloader.dataset), {"accuracy": accuracy}
         except:
             self.previous_loss = loss
             self.previous_accuracy = accuracy
