@@ -23,38 +23,77 @@ data = {
     }
 }
 
-# Plotting accuracy vs threshold loss
-plt.figure(figsize=(10, 6))
-for dataset, values in data.items():
-    plt.plot(values['Threshold Loss'], values['Accuracy'], marker='o', label=dataset)
-plt.xlabel('Threshold Loss')
-plt.ylabel('Accuracy')
-plt.title('Accuracy vs Threshold Loss')
-plt.legend()
-plt.grid(True)
-plt.show()
-plt.savefig('threshold_loss_Accuracy.png')
+# # Plotting accuracy vs threshold loss
+# plt.figure(figsize=(10, 6))
+# for dataset, values in data.items():
+#     plt.plot(values['Threshold Loss'], values['Accuracy'], marker='o', label=dataset)
+# plt.xlabel('Threshold Loss')
+# plt.ylabel('Accuracy')
+# plt.title('Accuracy vs Threshold Loss')
+# plt.legend()
+# plt.grid(True)
+# plt.show()
+# plt.savefig('threshold_loss_Accuracy.png')
 
-# Plotting loss vs threshold loss
-plt.figure(figsize=(10, 6))
-for dataset, values in data.items():
-    plt.plot(values['Threshold Loss'], values['Loss'], marker='o', label=dataset)
-plt.xlabel('Threshold Loss')
-plt.ylabel('Loss')
-plt.title('Loss vs Threshold Loss')
-plt.legend()
-plt.grid(True)
-plt.show()
-plt.savefig('threshold_loss_Loss.png')
+# # Plotting loss vs threshold loss
+# plt.figure(figsize=(10, 6))
+# for dataset, values in data.items():
+#     plt.plot(values['Threshold Loss'], values['Loss'], marker='o', label=dataset)
+# plt.xlabel('Threshold Loss')
+# plt.ylabel('Loss')
+# plt.title('Loss vs Threshold Loss')
+# plt.legend()
+# plt.grid(True)
+# plt.show()
+# plt.savefig('threshold_loss_Loss.png')
 
-# Plotting time vs threshold loss
-plt.figure(figsize=(10, 6))
+# # Plotting time vs threshold loss
+# plt.figure(figsize=(10, 6))
+# for dataset, values in data.items():
+#     plt.plot(values['Threshold Loss'], values['Time (sec)'], marker='o', label=dataset)
+# plt.xlabel('Threshold Loss')
+# plt.ylabel('Time (sec)')
+# plt.title('Time vs Threshold Loss')
+# plt.legend()
+# plt.grid(True)
+# plt.show()
+# plt.savefig('threshold_loss_Time.png')
+# Plotting
+fig = plt.figure(figsize=(18, 5))
+
+# Accuracy vs Threshold Loss
+ax1 = fig.add_subplot(1, 3, 1)
 for dataset, values in data.items():
-    plt.plot(values['Threshold Loss'], values['Time (sec)'], marker='o', label=dataset)
-plt.xlabel('Threshold Loss')
-plt.ylabel('Time (sec)')
-plt.title('Time vs Threshold Loss')
-plt.legend()
-plt.grid(True)
+    ax1.plot(values['Threshold Loss'], values['Accuracy'], marker='o', label=dataset)
+ax1.set_xlabel('Threshold Loss')
+ax1.set_ylabel('Accuracy')
+ax1.legend()
+ax1.grid(True)
+# fig.text(0.5/3, 0, 'Accuracy vs Threshold Loss', ha='center', va='center')
+ax1.text(0.5, -0.2, '(a) Accuracy vs Threshold Loss', ha='center', va='center', transform=ax1.transAxes)
+
+# Loss vs Threshold Loss
+ax2 = fig.add_subplot(1, 3, 2)
+for dataset, values in data.items():
+    ax2.plot(values['Threshold Loss'], values['Loss'], marker='o', label=dataset)
+ax2.set_xlabel('Threshold Loss')
+ax2.set_ylabel('Loss')
+ax2.legend()
+ax2.grid(True)
+# fig.text(1.5/3, 0, 'Loss vs Threshold Loss', ha='center', va='center')
+ax2.text(0.5, -0.2, '(b) Loss vs Threshold Loss', ha='center', va='center', transform=ax2.transAxes)
+
+# Time vs Threshold Loss
+ax3 = fig.add_subplot(1, 3, 3)
+for dataset, values in data.items():
+    ax3.plot(values['Threshold Loss'], values['Time (sec)'], marker='o', label=dataset)
+ax3.set_xlabel('Threshold Loss')
+ax3.set_ylabel('Time (sec)')
+ax3.legend()
+ax3.grid(True)
+# fig.text(2.5/3, 0, 'Time vs Threshold Loss', ha='center', va='center')
+ax3.text(0.5, -0.2, '(c) Time vs Threshold Loss', ha='center', va='center', transform=ax3.transAxes)
+
+plt.tight_layout()
+plt.savefig('threshold_loss.png')
 plt.show()
-plt.savefig('threshold_loss_Time.png')
