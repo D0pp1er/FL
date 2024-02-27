@@ -44,6 +44,10 @@ cifar_clients = [4, 8, 12, 16, 20]
 cifar_loss_no_defence = [5402261, 5297439, 7501376, 4704870, 6377244]
 cifar_loss_guardfl = [13169, 13024, 13288, 12676, 13461]
 
+femnist_clients = [4, 8, 12, 16, 20]
+femnist_loss_no_defence = [17115.91,14589.6,18252.17,16408.20,17068.91]
+femnist_loss_guardfl = [4209.86,4287.48,4181.36,4167.67 ,4307.84]
+
 # Plotting the loss for each dataset
 plt.figure(figsize=(10, 6))
 
@@ -52,6 +56,9 @@ plt.plot(mnist_clients, mnist_loss_guardfl, marker='o', linestyle='-', label='MN
 
 plt.plot(cifar_clients, cifar_loss_no_defence, marker='o', linestyle='dotted', label='CIFAR10 - No Defence', color = '#33FF57')
 plt.plot(cifar_clients, cifar_loss_guardfl, marker='o', linestyle='-', label='CIFAR10 - GuardFL', color = '#33FF57')
+
+plt.plot(femnist_clients, femnist_loss_no_defence, marker='o', linestyle='dotted', label='FEMNIST - No Defence', color = '#3377FF')
+plt.plot(femnist_clients, femnist_loss_guardfl, marker='o', linestyle='-', label='FEMNIST - GuardFL', color = '#3377FF')
 
 plt.xlabel('Number of Clients')
 plt.ylabel('Loss')
